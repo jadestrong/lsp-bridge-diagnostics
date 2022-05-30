@@ -34,6 +34,11 @@
     (const :tag "Pick flycheck" :flycheck))
   :group 'lsp-bridge-diagnostics)
 
+(defcustom lsp-bridge-diagnostics-disabled-modes nil
+  "A list of major models for which `lsp-diagnostics-mode' should be disabled."
+  :type '(repeat symbol)
+  :group 'lsp-bridge-diagnostics)
+
 ;; Flycheck integration
 
 (declare-function flycheck-mode "ext:flycheck")
