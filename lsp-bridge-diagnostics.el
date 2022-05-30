@@ -148,13 +148,7 @@ CALLBACK is the status callback passed by Flycheck."
          (apply orig-fun filepath diagnostics))
         (t (user-error "Not support this `lsp-bridge-diagnostics-provider' %s" lsp-bridge-diagnostics-provider))))
 
-;; (defadvice! +lsp-bridge-diagnostics-render (fipepath diagnostics)
-;;   :around #'lsp-bridge-diagnostics-render
-;;   (cond ((eq lsp-bridge-diagnostics-provider :flycheck)
-;;          (lsp-bridge-diagnostics--flycheck-report filepath diagnostics))
-;;         ((eq lsp-bridge-diagnostics-provider :native)
-;;          (lsp-bridge-diagnostics--native-report filepath diagnostics))
-;;         (t (user-error "Not support this `lsp-bridge-diagnostics-provider' %s" lsp-bridge-diagnostics-provider))))
+(advice-add 'lsp-bridge-diagnostics-render :around #'lsp-bridge-diagnostics-render-advice)
 
 ;;;###autoload
 (defun lsp-bridge-diagnostics--enable ()
